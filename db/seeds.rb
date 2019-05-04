@@ -1,10 +1,7 @@
 require "faker" # using faker gem
-User.destroy_all
 Movie.destroy_all
-10.times { # 10 users
-  User.create(username: Faker::Name.unique.first_name, password: "123456", password_confirmation: "123456") 
-} 
-movies = [ # 20 movies
+User.destroy_all
+movies = [
   "Buscando a Nemo",
   "Ciudad de Dios",
   "Hable con ella",
@@ -14,13 +11,30 @@ movies = [ # 20 movies
   "Chunking Express",
   "Drunken Master II",
   "Pulp Fiction",
-  "Adiós a mi concubina"
+  "Adiós a mi concubina",
+  "La lista de Schindler",
+  "Leolo",
+  "Sin Perdón",
+  "Uno de los nuestros",
+  "Muerte entre las flores",
+  "El decálogo",
+  "Nakayan",
+  "El cielo sobre Berlín",
+  "La mosca",
+  "El detective cantante",
+  "Avengers: Infinity War",
+  "Star Wars: The Force Awakens",
+  "Avatar",
+  "Titanic",
+  "Toy Story 3",
+  "Wonder Woman",
+  "Iron Man 3"
 ]
-movies.each {|movie| Movie.create(name: movie) }# create movies
-
-100.times do # 100 likes
-  user = User.all[rand(0...User.all.count)]
-  movie = Movie.all[rand(0...Movie.all.count)]
-  # where no user has the same movie more than once
-  user.movies.include?(movie) ? next : user.movies << movie 
-end
+10.times { # 10 users
+  u = User.new(username: Faker::Name.unique.first_name, password: "123456", password_confirmation: "123456")
+  u.save
+  count = 0
+  movies.each do |movie| 
+    Movie.create(user_id: u.id, like: [true, false].sample, name: movie)
+  end
+} 

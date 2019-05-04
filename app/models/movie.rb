@@ -4,11 +4,16 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  name       :string
+#  like       :boolean
+#  user_id    :bigint(8)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class Movie < ApplicationRecord
-  has_many :movie_users
-  has_many :users, through: :movie_users
+
+  belongs_to :user
+
+  validates :name, presence: true
+
 end
