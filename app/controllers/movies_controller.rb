@@ -28,11 +28,32 @@ class MoviesController < ApplicationController
   end
 
   def update
-    
+    @movie = @user.movies.find(params[:id])
+    if @user.movies.find(params[:id])
+      if @movie.update(movie_params)
+        render json: @movie, status: :elete
+      else
+        render json: { errors: @movie.errors.full_messages },
+              status: :unprocessable_entity
+      end
+    else
+      render json: { errors: 'it is not your movie' }, status: :error
+    end
+
   end
 
-  def delete
-
+  def destroy
+    @movie = @user.movies.find(params[:id])
+    if @user.movies.find(params[:id])
+      if @movie.delete
+        render json: { message: 'movie was delete' }, status: :error        
+      else
+        render json: { errors: @movie.errors.full_messages },
+              status: :unprocessable_entity
+      end
+    else
+      render json: { errors: 'it is not your movie' }, status: :error
+    end
   end
 
   def movie_params
