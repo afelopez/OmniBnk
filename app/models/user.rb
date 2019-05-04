@@ -11,6 +11,8 @@
 
 class User < ApplicationRecord
   has_secure_password
+  has_many :movie_users
+  has_many :movies, through: :movie_users
   validates :username, presence: true, uniqueness: true
   validates :password,
             length: { minimum: 6 },
