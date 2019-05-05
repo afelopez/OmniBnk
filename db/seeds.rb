@@ -33,8 +33,7 @@ movies = [
 10.times { # 10 users
   u = User.new(username: Faker::Name.unique.first_name, password: "123456", password_confirmation: "123456")
   u.save
-  count = 0
-  movies.each do |movie| 
+  movies[rand(0..13)...rand(14..27)].each do |movie| 
     Movie.create(user_id: u.id, like: [true, false].sample, name: movie)
   end
 } 

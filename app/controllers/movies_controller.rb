@@ -56,6 +56,11 @@ class MoviesController < ApplicationController
     end
   end
 
+  def recommendations
+    @recommendations = @user.recommend_movies[0...5]
+    render json: @recommendations, status: :ok
+  end
+
   def movie_params
     params.permit(
       :name, :like

@@ -8,6 +8,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+require "./lib/recommendation.rb"
 
 class User < ApplicationRecord
   has_secure_password
@@ -19,4 +20,6 @@ class User < ApplicationRecord
             length: { minimum: 6 },
             if: -> { new_record? || !password.nil? }
 
+  include Recommendation
+  
 end
