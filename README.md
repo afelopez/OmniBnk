@@ -1,15 +1,23 @@
-# LA COCREADORA
+# Test OmniBnk
 ## Índice
   1. [Instalación en máquina local](#Instalación-en-máquina-local)
+  2. [SIGN UP](#SIGN-UP)
+  3. [LOGIN](#LOGIN)
+  4. [Creating a movie](#Creating-a-movie)
+  5. [Retrieving a movie](#Retrieving-a-movie)
+  6. [Retrieving user movies](#Retrievinguser-movies)
+  7. [Updating a movie](#Updating-a-movie)
+  8. [Deleting a movie](#Deleting-a-movie)
+  9. [Retrieving recommended movies](#Retrieving-recommended-movies)
 ## Instalación en máquina local
-  Al descargar el repositorio deberás confirgurar la base de datos
+  Al descargar el repositorio deberás configurar la base de datos e instalar las dependencias.
   ```
     bundle
     rails db:create
     rails db:migrate
     rails db:seed
   ```
-  Con esto habremos generado ademas unos datos iniciales con los que ya podríamos trabajar.  
+  Con esto habremos generado ademas unos datos iniciales con los que ya podremos trabajar.  
   A continuación se puede verificar el funcionamiento de la aplicación mediante el uso de **Postman**
 ___
 ## SIGN UP
@@ -44,7 +52,7 @@ ___
   Para crear una película es necesario:
   1. Estar logueado en la plataforma usando el token para la autenticación.  
   2. Conocer un username para identificar de quien es la película.
-  3. Si el usuario no especifica que **le gusta** o **no** la pelicula usando el parámetro *like* que es boolean.
+  3. Rspecificar que **le gusta** o **no** la pelicula usando el parámetro *like* que es boolean.
   - Header
   ```
     Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNzAsImV4cCI6MTU1NzA5OTcwM30.deTuaTsErfbVwqPdMBFBXbV_-thF1qIyO2sUUgGiqVU
@@ -138,7 +146,7 @@ ___
   1. Estar logueado en la plataforma usando el token para la autenticación.  
   2. Conocer un username para identificar de quien es la película.
   3. Conocer el identificador de la película.
-  4. Los parámetros que voy a actualizar, **Nombe de la pelicula-> name:string** y **Si me gusta o no-> like:boolean**.
+  4. Los parámetros que se van a actualizar, **Nombe de la pelicula-> name:string** y **Si me gusta o no-> like:boolean**.
   - Header
   ```
     Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNzAsImV4cCI6MTU1NzA5OTcwM30.deTuaTsErfbVwqPdMBFBXbV_-thF1qIyO2sUUgGiqVU
@@ -178,17 +186,16 @@ ___
     }
   ```
 ## Retrieving recommended movies
-  > El sistema de recomendación  determina que tan posible le guste una pelicula a una pesona  
+  > El sistema de recomendación  determina que tan posible es que le guste una pelicula a una pesona  
   teniendo en cuenta:  
-  Que tantos tanta afinidad tienen los usuarios en sus gustos.  
-  Las perlículas que más les gustan a los usuarios en general.  
+  Que tanta afinidad tienen los usuarios en sus gustos y las películas que más les gustan a los usuarios en general.  
   ####Importante
   *Esto significa que una persona empezará a tener recomendaciones más precisas siempre y cuando tenga mayor afinidad con los demás usuarios, esto se logra*:  
   **Cuando un usuario crea/califica películas que ya han creado/calificado otros usuarios**
 
   Para obtener una lista de 5 películas recomendadas es necesario:
   1. Estar logueado en la plataforma usando el token para la autenticación.  
-  2. Conocer un username para identificar de quien es la película.
+  2. Conocer un username para identificar para quien es la recomendación.
   - Header
   ```
     Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNzAsImV4cCI6MTU1NzA5OTcwM30.deTuaTsErfbVwqPdMBFBXbV_-thF1qIyO2sUUgGiqVU
